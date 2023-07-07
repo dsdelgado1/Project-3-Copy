@@ -34,7 +34,7 @@ jobs:
           path: .
 
   deploy:
-    runs-on: Windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'wbwcrm070723A'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9342DEE37FAB498C864C1080E97CACF1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DFB67DA22022472FA600F62F40C2A1A4 }}
           package: .
