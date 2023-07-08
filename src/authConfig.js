@@ -1,12 +1,12 @@
 export const msalConfig = {
   auth: {
-    clientId: "2dd4d126-2eac-4057-a890-7a719438c76e",
+    clientId: "75276a4e-0c3b-4758-a78c-33904576243b",
     authority: "https://login.microsoftonline.com/b511dfbf-cb79-4dcf-b4a5-f88702c4a412", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
     redirectUri: "https://wbwcrmLab070723a.azurewebsites.net",
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
-    storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+    storeAuthStateInCookie: tru, // Set this to "true" if you are having issues on IE11 or Edge
   }
 };
 
