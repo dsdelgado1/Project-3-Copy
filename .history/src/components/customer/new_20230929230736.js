@@ -11,12 +11,12 @@ const New = () => {
         {
             company: "",
             contact_name: "",
-            title: "", //REMOVING THIS FIELD WILL CAUSE ISSUES.  POSSIBLY DUE TO BACK-END LOGIC. -DD REV2
+            //title: "",
             email: "",
             number: "",
             //old_address: "",
             //new_address: "",
-            category: "Real Estate Broker",
+            category: "REBE",
             //broker_company: "",
             // broker_name: "",
             //broker_number: "",
@@ -32,12 +32,13 @@ const New = () => {
         });
 
     const [selected, setSelected] = useState([]); //This determines what has and hasn't been selected yet with workers
+
     const dispatch = useDispatch();
     const workers = useSelector((state) => state.workers);
     const errors = useSelector((state) => state.errors.error);
     const customers = useSelector((state) => state.customers.customers); //We add this purely so the useEffect where we navigate will be called when a new customer is made!
     const selectedWorker = useSelector((state) => state.workers.current_worker); //We will be using this to determine if the user has a right to access this page
-        
+
 
     const navigate = useNavigate();
 
@@ -111,15 +112,15 @@ const New = () => {
                                     <input type="text" defaultValue={customer.contact_name} id="contact_name" onChange={e => handleChange(e)}></input>
                                 </label>
                             </div>
-                            {/* <div className="form-field">
+                            <div className="form-field">
                                 <label>
                                     Title:
                                     <input type="text" id="title" onChange={e => handleChange(e)}></input>
                                 </label>
-                            </div> */}
+                            </div>
                             <div className="form-field">
                                 <label>
-                                    Contact Email Address: <span className='red_asterisk'>*</span>
+                                    Contact Email: <span className='red_asterisk'>*</span>
                                     <input type="text" defaultValue={customer.email} id="email" onChange={e => handleChange(e)}></input>
                                 </label>
                             </div>
@@ -127,22 +128,6 @@ const New = () => {
                                 <label>
                                     Contact Phone Number: <span className='red_asterisk'>*</span>
                                     <input type="text" value={customer.number} id="number" onChange={e => handleChange(e)}></input>
-                                </label>
-                            </div>
-
-                            <div className="form-field">
-                                <label>
-                                    Category:
-                                    <div className="custom-select">
-                                        <select id="category" onChange={e => handleChange(e)}>
-                                            {/*dd rev1 <option value="EU">EU</option> */}
-                                            <option value="Real Estate Broker">Real Estate Broker</option>
-                                            <option value="Architect/Designer">Architect/Designer</option>
-                                            <option value="Project Management Firm">Project Management Firm</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-
                                 </label>
                             </div>
                             <div className="form-field">
@@ -160,16 +145,15 @@ const New = () => {
 
                                 </label>
                             </div>
-                        </div>
-
-                        {/*dd rev1                  <div className="form-field">
+                            
+                            {/*dd rev1                  <div className="form-field">
                                 <label>
                                     Old Address:
                                     <input type="text" defaultValue={customer.old_address} id="old_address" onChange={e => handleChange(e)}></input>
                                 </label>
                             </div> */}
 
-                        {/* dd rev1                <div className="form-field">
+                            {/* dd rev1                <div className="form-field">
                                 <label>
                                     New Address:
                                     <input type="text" defaultValue={customer.new_address} id="new_address" onChange={e => handleChange(e)}></input>
@@ -177,7 +161,7 @@ const New = () => {
                             </div>
  */}
 
-
+                        </div>
                         {/* dd rev1
                         <div className='form-field-container'>
                             <div className="form-field">

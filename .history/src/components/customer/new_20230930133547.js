@@ -37,7 +37,7 @@ const New = () => {
     const errors = useSelector((state) => state.errors.error);
     const customers = useSelector((state) => state.customers.customers); //We add this purely so the useEffect where we navigate will be called when a new customer is made!
     const selectedWorker = useSelector((state) => state.workers.current_worker); //We will be using this to determine if the user has a right to access this page
-        
+
 
     const navigate = useNavigate();
 

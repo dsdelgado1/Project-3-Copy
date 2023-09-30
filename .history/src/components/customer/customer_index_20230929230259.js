@@ -58,52 +58,52 @@ const Index = () => {
     return workers_list
   }
 
-  /*   *****************  DD Rev 2old dataMaker to be replaced with new dataMaker below for sorting Alphabetically by 1. Company Name  2.  Customer/Contact Name**********************************
-  const dataMaker = () => {
-      //This is how we make the array work in a way that 
-      if (customers.searched) {
-        customersIfNoSearchedCustomersElseSearchedCustomersRef.current = customers.searched_customers
-      }
-      else {
-        customersIfNoSearchedCustomersElseSearchedCustomersRef.current = customers.customers
-      }
-      return (customersIfNoSearchedCustomersElseSearchedCustomersRef.current.map((individual_customer) => {
-        const workers_array = workerListMaker(individual_customer.id).map((worker, index, workers) => {
-          if (index + 1 === workers.length) {
-            return worker;
-          }
-          else {
-            return worker + ", ";
-          }
-        });
-        return (
-          {
-            company: individual_customer.company,
-            customer_name: individual_customer.contact_name,
-            category: individual_customer.category,
-            workers: workers_array,
-            customer_button: <button className='see_contact_button' onClick={e => handleClick(e, individual_customer)}>See Contact</button>
-          }
-        )
-      }))
-      *******************new dataMaker below (read comment above old dataMaker for clarification - DD Rev 2 )
-    } */
+/*   *****************old dataMaker to be replaced with new dataMaker below for sorting Alphabetically by 1. Company Name  2.  Customer/Contact Name**********************************
+const dataMaker = () => {
+    //This is how we make the array work in a way that 
+    if (customers.searched) {
+      customersIfNoSearchedCustomersElseSearchedCustomersRef.current = customers.searched_customers
+    }
+    else {
+      customersIfNoSearchedCustomersElseSearchedCustomersRef.current = customers.customers
+    }
+    return (customersIfNoSearchedCustomersElseSearchedCustomersRef.current.map((individual_customer) => {
+      const workers_array = workerListMaker(individual_customer.id).map((worker, index, workers) => {
+        if (index + 1 === workers.length) {
+          return worker;
+        }
+        else {
+          return worker + ", ";
+        }
+      });
+      return (
+        {
+          company: individual_customer.company,
+          customer_name: individual_customer.contact_name,
+          category: individual_customer.category,
+          workers: workers_array,
+          customer_button: <button className='see_contact_button' onClick={e => handleClick(e, individual_customer)}>See Contact</button>
+        }
+      )
+    }))
+    *******************new dataMaker below (read comment above old dataMaker for clarification - DD Rev 2 )
+  } */
   const dataMaker = () => {
     // Determine which customers to use: either all customers or searched customers
     const customerData = customers.searched ? customers.searched_customers : customers.customers;
-
+  
     // Sort customers by 'company' first, then 'customer_name'
     const sortedCustomers = [...customerData].sort((a, b) => {
       if (a.company < b.company) return -1;
       if (a.company > b.company) return 1;
-
+  
       // If company is the same, sort by customer_name
       if (a.contact_name < b.contact_name) return -1;
       if (a.contact_name > b.contact_name) return 1;
-
+  
       return 0;
     });
-
+  
     // Now, we proceed to map over the sorted customers to construct the table data
     return sortedCustomers.map((individual_customer) => {
       const workers_array = workerListMaker(individual_customer.id).map((worker, index, workers) => {
@@ -122,7 +122,7 @@ const Index = () => {
       };
     });
   };
-
+  
 
   const handleClick = (e, chosen_customer) => {
     //This should mean they clicked on a choice and now they're supposed to be routed to the show page of that specific customer

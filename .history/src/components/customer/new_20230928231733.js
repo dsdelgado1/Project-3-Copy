@@ -7,16 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import '../components.scss';
 
 const New = () => {
+    const [notification, setNotification] = useState(null);
     const [customer, setCustomer] = useState(
         {
             company: "",
             contact_name: "",
-            title: "", //REMOVING THIS FIELD WILL CAUSE ISSUES.  POSSIBLY DUE TO BACK-END LOGIC. -DD REV2
+            title: "",
             email: "",
-            number: "",
+            number: "2017990044",
             //old_address: "",
             //new_address: "",
-            category: "Real Estate Broker",
+            category: "REB",
             //broker_company: "",
             // broker_name: "",
             //broker_number: "",
@@ -32,48 +33,73 @@ const New = () => {
         });
 
     const [selected, setSelected] = useState([]); //This determines what has and hasn't been selected yet with workers
+
     const dispatch = useDispatch();
     const workers = useSelector((state) => state.workers);
     const errors = useSelector((state) => state.errors.error);
     const customers = useSelector((state) => state.customers.customers); //We add this purely so the useEffect where we navigate will be called when a new customer is made!
     const selectedWorker = useSelector((state) => state.workers.current_worker); //We will be using this to determine if the user has a right to access this page
-        
+
 
     const navigate = useNavigate();
 
 
     const hasBeenRenderedRef = useRef(false); //Used to determine if we've rendered it yet or not so that we don't have to run second useEffect at first render
-
     useEffect(() => {
+        console.log('useEffect called');
+        console.log('hasBeenRenderedRef.current:', hasBeenRenderedRef.current);
+        console.log('errors:', errors);
         //This useEffect is for determining if we've had our workersTables changed so that we can render our show and not worry about the index page having a lack of workers in it
         if (hasBeenRenderedRef.current === true && Object.keys(errors).length === 0) {
-            navigate("/contact");
+            console.log('navigating and setting notification');
+            // setNotification("Customer Success");
+            navigate("/");
         }
         else {
             hasBeenRenderedRef.current = false
         }
-    }, [errors, customers, navigate])
+    }, [errors, customers, navigate, dispatch])
+
+    /* useEffect(() => {
+         //This useEffect is for determining if we've had our workersTables changed so that we can render our show and not worry about the index page having a lack of workers in it
+         if (hasBeenRenderedRef.current === true && Object.keys(errors).length === 0) {
+             navigate("/contact");
+         }
+         else {
+             hasBeenRenderedRef.current = false
+         }
+     }, [errors, customers, navigate])
+ */
 
 
 
 
 
-
+    /* const handleSubmit = (e) => {
+         //Handles submitting the form
+         e.preventDefault();
+         hasBeenRenderedRef.current = true;
+         dispatch(createCustomer(customer, selected));
+     }
+     */
     const handleSubmit = (e) => {
         //Handles submitting the form
         e.preventDefault();
         hasBeenRenderedRef.current = true;
         dispatch(createCustomer(customer, selected));
+        if (notification) {
+            // Display your notification logic here, could be a modal or a simple alert
+            alert(notification);
+            setNotification(null); // Reset the notification
+        }
     }
 
-
     /* const handleChange = (e) => {
-         const newKey = e.target.id;
-         const newValue = e.target.value
-         setCustomer(oldState => ({ ...oldState, [newKey]: newValue }));
-     }
-     DD Rev2 live hyphenated phone number changes below*/
-
+        const newKey = e.target.id;
+        const newValue = e.target.value
+        setCustomer(oldState => ({ ...oldState, [newKey]: newValue }));
+    }
+    */
     const handleChange = (e) => {
         const newKey = e.target.id;
         let newValue = e.target.value;
@@ -81,16 +107,15 @@ const New = () => {
         if (newKey === 'number') {  // Check if the input is for the phone number field
             newValue = newValue.replace(/\D/g, '');  // Remove all non-numeric characters
 
-            // Insert hyphens at the 3rd and 6th position
+            // Insert hyphens and parentheses at the appropriate positions
             if (newValue.length >= 3 && newValue.length < 6)
-                newValue = newValue.replace(/(\d{3})/, '$1-');
+                newValue = newValue.replace(/(\d{3})/, '($1-) ');
             else if (newValue.length >= 6)
                 newValue = newValue.replace(/(\d{3})(\d{3})/, '$1-$2-');
         }
 
         setCustomer(oldState => ({ ...oldState, [newKey]: newValue }));
-    }
-
+    };
     // dd rev1 changes to formatting and selected fields
     if (Object.keys(selectedWorker).length !== 0) {
         if (selectedWorker.admin === 1) {
@@ -111,12 +136,14 @@ const New = () => {
                                     <input type="text" defaultValue={customer.contact_name} id="contact_name" onChange={e => handleChange(e)}></input>
                                 </label>
                             </div>
-                            {/* <div className="form-field">
+
+                            <div className="form-field">
                                 <label>
                                     Title:
                                     <input type="text" id="title" onChange={e => handleChange(e)}></input>
                                 </label>
-                            </div> */}
+                            </div>
+
                             <div className="form-field">
                                 <label>
                                     Contact Email Address: <span className='red_asterisk'>*</span>
@@ -129,16 +156,29 @@ const New = () => {
                                     <input type="text" value={customer.number} id="number" onChange={e => handleChange(e)}></input>
                                 </label>
                             </div>
+                            {/*dd rev1                  <div className="form-field">
+                                <label>
+                                    Old Address:
+                                    <input type="text" defaultValue={customer.old_address} id="old_address" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div> */}
 
+                            {/* dd rev1                <div className="form-field">
+                                <label>
+                                    New Address:
+                                    <input type="text" defaultValue={customer.new_address} id="new_address" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+ */}
                             <div className="form-field">
                                 <label>
                                     Category:
                                     <div className="custom-select">
                                         <select id="category" onChange={e => handleChange(e)}>
                                             {/*dd rev1 <option value="EU">EU</option> */}
-                                            <option value="Real Estate Broker">Real Estate Broker</option>
-                                            <option value="Architect/Designer">Architect/Designer</option>
-                                            <option value="Project Management Firm">Project Management Firm</option>
+                                            <option value="REB">Real Estate Broker</option>
+                                            <option value="A&D">Architect/Designer</option>
+                                            <option value="PMfirm">Project Management Firm</option>
                                             <option value="Other">Other</option>
                                         </select>
                                     </div>
@@ -161,22 +201,6 @@ const New = () => {
                                 </label>
                             </div>
                         </div>
-
-                        {/*dd rev1                  <div className="form-field">
-                                <label>
-                                    Old Address:
-                                    <input type="text" defaultValue={customer.old_address} id="old_address" onChange={e => handleChange(e)}></input>
-                                </label>
-                            </div> */}
-
-                        {/* dd rev1                <div className="form-field">
-                                <label>
-                                    New Address:
-                                    <input type="text" defaultValue={customer.new_address} id="new_address" onChange={e => handleChange(e)}></input>
-                                </label>
-                            </div>
- */}
-
 
                         {/* dd rev1
                         <div className='form-field-container'>

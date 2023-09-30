@@ -37,7 +37,7 @@ const New = () => {
     const errors = useSelector((state) => state.errors.error);
     const customers = useSelector((state) => state.customers.customers); //We add this purely so the useEffect where we navigate will be called when a new customer is made!
     const selectedWorker = useSelector((state) => state.workers.current_worker); //We will be using this to determine if the user has a right to access this page
-        
+
 
     const navigate = useNavigate();
 
@@ -136,7 +136,7 @@ const New = () => {
                                     <div className="custom-select">
                                         <select id="category" onChange={e => handleChange(e)}>
                                             {/*dd rev1 <option value="EU">EU</option> */}
-                                            <option value="Real Estate Broker">Real Estate Broker</option>
+                                            <option value="Real Estate BROKER">Real Estate Broker</option>
                                             <option value="Architect/Designer">Architect/Designer</option>
                                             <option value="Project Management Firm">Project Management Firm</option>
                                             <option value="Other">Other</option>
