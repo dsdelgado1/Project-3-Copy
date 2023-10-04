@@ -1,0 +1,449 @@
+[33mcommit 2eb20ec1ed6b261d39788936f3f937d5283ec4d3[m[33m ([m[1;36mHEAD -> [m[1;32mSept_Feature_Update[m[33m, [m[1;31mupstream/Sept_Feature_Update[m[33m)[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Tue Oct 3 23:11:21 2023 -0400
+
+    New Sorting, Allow Duplicate Company and more.
+
+[33mcommit 2dca71146b6cb727ccc709cf9275618ab260103a[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Sat Sep 30 16:13:44 2023 -0400
+
+    New Features (i.e.New Form Fields, Re-formatted View All Contacts, Auto-Hyphenated Tel Phone#)
+
+[33mcommit 39f1fe05618c26d2a8f5089ae534950221f7aff8[m[33m ([m[1;31mupstream/Re-do[m[33m, [m[1;31morigin/Re-do[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmy-new-branch[m[33m, [m[1;32mRe-do[m[33m)[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Fri Sep 8 21:18:13 2023 -0400
+
+    Removed EU default category, in addition to many of the customer fields. Also capitalized N in New Customer
+
+[33mcommit 3644aeb93e435666850ae39a63974d9a4a32ae19[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Thu Aug 17 18:42:36 2023 -0400
+
+    adding redirectUri on authconfig file.
+
+[33mcommit 110be2c48f89a9288a9ac6d75ce9b322586706b6[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Thu Aug 17 18:13:59 2023 -0400
+
+    secondary bulk
+
+[33mcommit a32d1f6dec172b7584c31d3954e62e7d8ad2e36e[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Wed Aug 16 12:39:26 2023 -0400
+
+    from AzureAddress to local
+
+[33mcommit c78e8a4c63b09df1d3cae7f48d06cf40f6f832c2[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Sun Jul 9 16:08:41 2023 -0400
+
+    please
+
+[33mcommit 83da06d160c120bbf595f3ca4c7fa9234ebf1b4a[m
+Merge: 44184ba 3011dd1
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Sun Jul 9 15:34:25 2023 -0400
+
+    resolved merge conflict
+
+[33mcommit 44184baba4209c9f52338b00c93c49a21616ee77[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Sun Jul 9 02:43:31 2023 -0400
+
+    message
+
+[33mcommit e6bc711c6a950426c59782af1a95b60cfd6ea3bf[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Sun Jul 9 05:33:14 2023 +0000
+
+    Updated authConfig.js
+
+[33mcommit 8ed45470ed4531e4eec4181f9559317902f3b96e[m
+Author: Danny Delgado <ddelgado@wbwood.com>
+Date:   Sun Jul 9 05:31:21 2023 +0000
+
+    Updated authConfig.js
+
+[33mcommit 3011dd186557f2ef9e9762c86c6ddfae30080142[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jun 30 11:45:32 2023 -0400
+
+    changed the redirectUri to work
+
+[33mcommit 19e294401bc9241c125fb99b58f0797abaff5dc8[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jun 30 11:27:55 2023 -0400
+
+    allowing people to access the site if they're in the DB
+
+[33mcommit e8b3448a1ec5b1066d4edcf30bbce213c22cce14[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 12:28:54 2023 -0400
+
+    added web.config file
+
+[33mcommit 5e5a56dbea9ce4eabce78946d858b378d23b65ef[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 11:29:16 2023 -0400
+
+    adding back getAzureUserInfo to worker.js action
+
+[33mcommit 8a294e699924d1f0b9531c24b5c6b1c054e634a3[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 11:23:22 2023 -0400
+
+    adding logo
+
+[33mcommit a340e4684d194e49d31cbbdd7481ea6e68bad364[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 11:20:38 2023 -0400
+
+    trying to patch bug
+
+[33mcommit 3c4f290c74adf5c1d265d8c3486d65c5b1c7c217[m
+Merge: 8736b8b c6df2c0
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 11:20:20 2023 -0400
+
+    Merge branch 'main' of https://github.com/zach6585/CRMFrontend into main
+
+[33mcommit 8736b8be211124e37188d006251c2d68c5510074[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 11:20:01 2023 -0400
+
+    trying to patch bug
+
+[33mcommit dbfcfad38fefc9c56311fa4cf6cfc5fdbc148332[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Jun 29 11:16:52 2023 -0400
+
+    trying to patch logo error
+
+[33mcommit 2b2f5d11b21b89b9119962bd08797e35290f8128[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Wed Jun 28 15:32:20 2023 -0400
+
+    got rid of console log
+
+[33mcommit 27e69a0db56ac833a9026cd9a31a7124bb01a90f[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Wed Jun 28 15:22:36 2023 -0400
+
+    updating uri
+
+[33mcommit c6df2c03c32790d330bb8f6da67f1eeab06d15ea[m
+Merge: 8e4352e 244d4ee
+Author: Zach Mines <55710442+zach6585@users.noreply.github.com>
+Date:   Wed Jun 28 15:19:44 2023 -0400
+
+    Merge branch 'logo' into main
+
+[33mcommit 8e4352ebd0d4f84ce740d1ed6775e2c24333b0be[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Wed Jun 28 15:15:11 2023 -0400
+
+    updated site
+
+[33mcommit 244d4ee763ea0c33da1821c456950bc92f84662a[m
+Author: ddelgado1 <ddelgado@wbwood.com>
+Date:   Mon Jun 26 13:53:00 2023 -0400
+
+    Logo to Banner
+
+[33mcommit 557d3ee03504eb6513481e73a28d3cc53e8d467f[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Tue Jun 13 14:55:13 2023 -0400
+
+    uploading for Danny
+
+[33mcommit 1631b15b47bc80b6072267c82b4133e762ef9b71[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Tue Jan 31 16:12:54 2023 -0500
+
+    fixed redirect link
+
+[33mcommit 412b04f25fca8ee9577bc8a9b8a9207d5e012490[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Mon Jan 30 18:52:54 2023 -0500
+
+    correcting authConfig.js
+
+[33mcommit cfd9aba7851a5340f312e3fca4cbc74402cc6985[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Mon Jan 30 18:49:45 2023 -0500
+
+    fixed readme
+
+[33mcommit e47ac73d5ae29c0c98c205612a93eb27cccc7166[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jan 27 18:11:41 2023 -0500
+
+    got rid of some stuff
+
+[33mcommit 1984a5c482fb22d64edc67d8db5294640c26027e[m
+Merge: 42cb173 e084dfc
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jan 27 18:00:02 2023 -0500
+
+    h
+
+[33mcommit e084dfcfdcff9d221d977061784247c2c4a9a41b[m
+Author: Zach Mines <55710442+zach6585@users.noreply.github.com>
+Date:   Fri Jan 27 17:57:23 2023 -0500
+
+    Update authConfig.js
+
+[33mcommit 42cb173f1dbf8b27440e721c2a8298fc5f1ac3bf[m
+Merge: 1adea01 2324d43
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jan 27 17:52:11 2023 -0500
+
+    Merge branch 'main' of https://github.com/zach6585/CRMFrontend into main
+
+[33mcommit 1adea016a27f665ddf5d32849af52176275ef840[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jan 27 17:51:48 2023 -0500
+
+    changed redirectURI
+
+[33mcommit 2324d43f1ee0c9488a025570f22e00f28f6e1cd8[m
+Author: Zach Mines <55710442+zach6585@users.noreply.github.com>
+Date:   Fri Jan 27 17:24:54 2023 -0500
+
+    Delete package-lock.json
+
+[33mcommit a6cf371133b7debd7563945b8841ee5f993a2763[m
+Author: Zach Mines <55710442+zach6585@users.noreply.github.com>
+Date:   Fri Jan 27 16:57:10 2023 -0500
+
+    Update README.md
+
+[33mcommit 49a437ffc82e062301b63b9ee3f8d53f11fe3b73[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jan 27 16:55:34 2023 -0500
+
+    changing some stuff
+
+[33mcommit 76c90e33194f6e76312a896140ca9c6580e9a43f[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Fri Jan 27 14:56:59 2023 -0500
+
+    changed redirect
+
+[33mcommit 491cd21bc6485b4cb43302220593f0ecaa6af86a[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Tue Nov 15 16:42:42 2022 -0500
+
+    added ability to add workers to customer
+
+[33mcommit f312c1b3552e246fea9e86d1f50eb0a9d50e3cd2[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Tue Nov 15 15:17:42 2022 -0500
+
+    added some things
+
+[33mcommit 7539c10ef5fe4c588fe7955d39753cdd6cc2b0e2[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Nov 11 20:53:14 2022 -0500
+
+    fixing search for netlify
+
+[33mcommit 350f3d7ced277f96d0976a8104fc0692e61f43f3[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Nov 11 17:39:08 2022 -0500
+
+    added some changes
+
+[33mcommit 3273366f81dc9d7cefe8c89915f6f8c58e69660a[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Nov 11 17:38:32 2022 -0500
+
+    added some changes
+
+[33mcommit 66ad8c49405d9a0580ea8eb1d01d2c23da2447a4[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Nov 11 17:36:25 2022 -0500
+
+    added some changes
+
+[33mcommit d9fdccc647916dc6d15c75f31101c5b7f026ab6d[m
+Merge: ca193b2 7eb2a4d
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Nov 11 17:23:07 2022 -0500
+
+    Merge branch 'main' of https://github.com/zach6585/CRMFrontend
+
+[33mcommit ca193b2577c58e65c62b8dbbfd0684e6568173f1[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Nov 11 17:20:26 2022 -0500
+
+    fixed no contact problem
+
+[33mcommit 7eb2a4da357367baacad9a5ec0ebe100489e54f7[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Nov 10 15:49:48 2022 -0500
+
+    ?
+
+[33mcommit ecbf7543f2206feeb935e8b09542f0e2cb76ccfe[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Nov 10 15:48:20 2022 -0500
+
+    ?
+
+[33mcommit 40bfbd5018890ed7c892617b1843468197cb9c29[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Nov 10 15:40:09 2022 -0500
+
+    added dev tools
+
+[33mcommit 5eef315f870a406578895e4ed03bae3100272299[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Nov 10 15:37:29 2022 -0500
+
+    added dev tools
+
+[33mcommit 95009dee3904531041e87e1e078b0e5e3ea33439[m
+Author: zach6585 <zmines@wesleyan.edu>
+Date:   Thu Nov 10 15:30:35 2022 -0500
+
+    added dev tools
+
+[33mcommit 0f752edc3d17ce25002a8f6e0624cd574e0dbdbe[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Thu Nov 3 14:45:26 2022 -0400
+
+    set up readme file
+
+[33mcommit a91cad52f120102c27694e801baf615835a35440[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 31 18:22:12 2022 -0400
+
+    fixed weird worker list bug
+
+[33mcommit f6cbe298b3e82b4bff843c4d4ec9f63436b988fd[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 31 18:13:18 2022 -0400
+
+    changed to use wbwaccess
+
+[33mcommit 36474cd09137d3c349451878551bdde0e29acf23[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Oct 28 15:40:01 2022 -0400
+
+    fixed links
+
+[33mcommit a48eb77e6af6356d0a556186f9071402064068e6[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Oct 28 15:38:08 2022 -0400
+
+    changed to contacts
+
+[33mcommit cdb44537e856bda3451d8d515f51c5212f6998c4[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Oct 28 15:37:18 2022 -0400
+
+    changed to contacts
+
+[33mcommit 3a7ac7fd4abf9d1aeca37d4ea73ce3a2791f934a[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 17 18:38:06 2022 -0400
+
+    got rid of devtools and also got rid of calendar stuff
+
+[33mcommit 74c76dad158ef9aec322b6c1c5a63e6f82c65458[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 17 18:34:38 2022 -0400
+
+    testing
+
+[33mcommit b0d66e935e2f4b999e28c9a7909db996a70150b5[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 17 18:33:00 2022 -0400
+
+    some testing stuff
+
+[33mcommit c5913ac5d338fae0d62b46e23af188da6bdf2ddf[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 17 18:24:36 2022 -0400
+
+    reverted to non-wbw only thing
+
+[33mcommit 79d5dd8a0ba8a9f77a3ba7e738ede30a159b2b9d[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Mon Oct 17 18:22:41 2022 -0400
+
+    Fixed calendar problem
+
+[33mcommit d2017abd5eb78ec37f20a6467cf00d02f2fe673d[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:56:56 2022 -0400
+
+    test
+
+[33mcommit 18f204d1dec5b9d4be140c73f1daf3bdb5aaa73d[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:55:59 2022 -0400
+
+    test
+
+[33mcommit 61b4dea5c67c4b279e25137a1bfde99166d31038[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:53:20 2022 -0400
+
+    test
+
+[33mcommit 686f15f1be9a999d1e4a16c59fbfd287b32e864b[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:51:18 2022 -0400
+
+    test
+
+[33mcommit 4b34c8dc07436b7c0b978dfe13189f0066d6ebd1[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:50:55 2022 -0400
+
+    test
+
+[33mcommit c7303e91348af29c6410029934815132813934f6[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:47:45 2022 -0400
+
+    test
+
+[33mcommit 7ef79a3acd6fb88c88e02918e3d6ddec9181a9b7[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:43:42 2022 -0400
+
+    it works finally
+
+[33mcommit d4125c962215b04dae37d25052acffa6814b1d8e[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 15:40:05 2022 -0400
+
+    trying popup
+
+[33mcommit cc2d2c33642ccb750e0965f8ae557029793ca7f0[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Sat Oct 15 14:28:28 2022 -0400
+
+    please
+
+[33mcommit ca20d296647d111eb406fa1dfd3900ec4b9b1e32[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Oct 14 22:00:05 2022 -0400
+
+    Fixed microsoft redirect location
+
+[33mcommit 8d2ab24d9266a5c35f277da3460020b1930485c3[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Oct 14 21:40:21 2022 -0400
+
+    work pwease?
+
+[33mcommit 5747d357a14dce94964336289b46d5c63eb68fbd[m
+Author: Zach Mines <zachmines@Zachs-iMac.local>
+Date:   Fri Oct 14 20:30:11 2022 -0400
+
+    first commit
