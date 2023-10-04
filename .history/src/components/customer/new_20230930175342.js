@@ -1,0 +1,319 @@
+import { useState, useEffect, useRef } from 'react';
+import { MultiSelect } from "react-multi-select-component";
+import { useSelector, useDispatch } from 'react-redux';
+import { createCustomer } from '../../actions/customer.js';
+import { useNavigate } from 'react-router-dom';
+
+import '../components.scss';
+
+const New = () => {
+    const [customer, setCustomer] = useState(
+        {
+            company: "Test",
+            contact_name: "Don Rogers",
+            title: "", //REMOVING THIS FIELD WILL CAUSE ISSUES.  POSSIBLY DUE TO BACK-END LOGIC. -DD REV2
+            email: "drogers@yahoo.com",
+            number: "2017974322",
+            //old_address: "",
+            //new_address: "",
+            category: "Real Estate Broker",
+            //broker_company: "",
+            // broker_name: "",
+            //broker_number: "",
+            //broker_email: "",
+            //architect_company: "",
+            //architect_name: "",
+            //architect_number: "",
+            //architect_email: "",
+            //consultant_company: "",
+            //consultant_name: "",
+            //consultant_number: "",
+            //consultant_email: ""
+        });
+    const [notification, setNotification] = useState(null);
+    const [selected, setSelected] = useState([]); //This determines what has and hasn't been selected yet with workers
+    const dispatch = useDispatch();
+    const workers = useSelector((state) => state.workers);
+    const errors = useSelector((state) => state.errors.error);
+    const customers = useSelector((state) => state.customers.customers); //We add this purely so the useEffect where we navigate will be called when a new customer is made!
+    const selectedWorker = useSelector((state) => state.workers.current_worker); //We will be using this to determine if the user has a right to access this page
+
+
+    const navigate = useNavigate();
+
+
+    const hasBeenRenderedRef = useRef(false); //Used to determine if we've rendered it yet or not so that we don't have to run second useEffect at first render
+
+    /*useEffect(() => {
+        //This useEffect is for determining if we've had our workersTables changed so that we can render our show and not worry about the index page having a lack of workers in it
+        if (hasBeenRenderedRef.current === true && Object.keys(errors).length === 0) {
+            navigate("/contact");
+        }
+        else {
+            hasBeenRenderedRef.current = false
+        }
+    }, [errors, customers, navigate])
+*/
+    // Rev 2 DD - ZM -->This useEffect is for determining if we've had our workersTables changed so that we can render our show and not worry about the index page having a lack of workers in it
+
+    useEffect(() => {
+        if (hasBeenRenderedRef.current === true && Object.keys(errors).length === 0) {
+            setNotification("Customer Successfully Submitted");
+            navigate("/");  // Navigate to homepage
+        }
+        else {
+            hasBeenRenderedRef.current = false;
+        }
+    }, [errors, customers, navigate]);
+
+
+
+
+
+    const handleSubmit =  (e) => {
+        //Handles submitting the form
+        e.preventDefault();
+        
+
+        try {
+            const response = await dispatch(createCustomer(customer, selected));
+            // Assuming the 'createCustomer' action returns a payload indicating success or failure
+            console.log("Response from createCustomer: ", response);
+
+            if (response.payload.success) {
+                // Display your success message here
+                alert('Customer submitted successfully!');
+            } else {
+                // Handle non-successful submission
+                alert('Customer submission failed.');
+            }
+        } catch (error) {
+            // Handle error here
+            alert('An error occurred. Submission failed.');
+        }
+        hasBeenRenderedRef.current = true;  // Assuming this is necessary for your logic
+    };
+
+
+    /* const handleChange = (e) => {
+         const newKey = e.target.id;
+         const newValue = e.target.value
+         setCustomer(oldState => ({ ...oldState, [newKey]: newValue }));
+     }
+     DD Rev2 live hyphenated phone number changes below*/
+
+    const handleChange = (e) => {
+        const newKey = e.target.id;
+        let newValue = e.target.value;
+
+        if (newKey === 'number') {  // Check if the input is for the phone number field
+            newValue = newValue.replace(/\D/g, '');  // Remove all non-numeric characters
+
+            // Insert hyphens at the 3rd and 6th position
+            if (newValue.length >= 3 && newValue.length < 6)
+                newValue = newValue.replace(/(\d{3})/, '$1-');
+            else if (newValue.length >= 6)
+                newValue = newValue.replace(/(\d{3})(\d{3})/, '$1-$2-');
+        }
+
+        setCustomer(oldState => ({ ...oldState, [newKey]: newValue }));
+    }
+    if (notification) {
+        alert(notification); // Replace this with your preferred notification mechanism
+        setNotification(null); // Clear the notification
+    }
+    // dd rev1 changes to formatting and selected fields
+    if (Object.keys(selectedWorker).length !== 0) {
+        if (selectedWorker.admin === 1) {
+            return (
+                <div className='form-container'>
+                    <h1 className="form-title">Create a New Contact</h1>
+                    <form id="customer_form" onSubmit={handleSubmit}>
+                        <div className='form-field-container'>
+                            <div className="form-field">
+                                <label>
+                                    Company Name: <span className='red_asterisk'>*</span>
+                                    <input type="text" defaultValue={customer.company} id="company" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Contact Name: <span className='red_asterisk'>*</span>
+                                    <input type="text" defaultValue={customer.contact_name} id="contact_name" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            {/* <div className="form-field">
+                                <label>
+                                    Title:
+                                    <input type="text" id="title" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div> */}
+                            <div className="form-field">
+                                <label>
+                                    Contact Email Address: <span className='red_asterisk'>*</span>
+                                    <input type="text" defaultValue={customer.email} id="email" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Contact Phone Number: <span className='red_asterisk'>*</span>
+                                    <input type="text" value={customer.number} id="number" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+
+                            <div className="form-field">
+                                <label>
+                                    Category:
+                                    <div className="custom-select">
+                                        <select id="category" onChange={e => handleChange(e)}>
+                                            {/*dd rev1 <option value="EU">EU</option> */}
+                                            <option value="Real Estate Broker">Real Estate Broker</option>
+                                            <option value="Architect/Designer">Architect/Designer</option>
+                                            <option value="Project Management Firm">Project Management Firm</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    WB Wood Owners: <span className='red_asterisk'>*</span>
+                                    <div id="multi_select">
+                                        <MultiSelect
+                                            options={workers.select_tag_worker_list}
+                                            value={selected}
+                                            onChange={setSelected}
+                                            labelledBy="Select"
+                                        />
+                                    </div>
+
+
+                                </label>
+                            </div>
+                        </div>
+
+                        {/*dd rev1                  <div className="form-field">
+                                <label>
+                                    Old Address:
+                                    <input type="text" defaultValue={customer.old_address} id="old_address" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div> */}
+
+                        {/* dd rev1                <div className="form-field">
+                                <label>
+                                    New Address:
+                                    <input type="text" defaultValue={customer.new_address} id="new_address" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+ */}
+
+
+                        {/* dd rev1
+                        <div className='form-field-container'>
+                            <div className="form-field">
+                                <label>
+                                    Broker Company:
+                                    <input type="text" defaultValue={customer.broker_company} id="broker_company" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+
+                            <div className="form-field">
+                                <label>
+                                    Broker Name:
+                                    <input type="text" defaultValue={customer.broker_name} id="broker_name" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+
+                            <div className="form-field">
+                                <label>
+                                    Broker Number:
+                                    <input type="text" defaultValue={customer.broker_number} id="broker_number" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+
+                            <div className="form-field">
+                                <label>
+                                    Broker Email:
+                                    <input type="text" defaultValue={customer.broker_email} id="broker_email" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div className='form-field-container'>
+                            <div className="form-field">
+                                <label>
+                                    Architect Company:
+                                    <input type="text" defaultValue={customer.architect_company} id="architect_company" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Architect Name:
+                                    <input type="text" defaultValue={customer.architect_name} id="architect_name" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Architect Number:
+                                    <input type="text" defaultValue={customer.architect_number} id="architect_number" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Architect Email:
+                                    <input type="text" defaultValue={customer.architect_email} id="architect_email" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className='form-field-container'>
+                            <div className="form-field">
+                                <label>
+                                    Consultant Company:
+                                    <input type="text" defaultValue={customer.consultant_company} id="consultant_company" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+
+                            <div className="form-field">
+                                <label>
+                                    Consultant Name:
+                                    <input type="text" defaultValue={customer.consultant_name} id="consultant_name" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Consultant Number:
+                                    <input type="text" defaultValue={customer.consultant_number} id="consultant_number" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                            <div className="form-field">
+                                <label>
+                                    Consultant Email:
+                                    <input type="text" defaultValue={customer.consultant_email} id="consultant_email" onChange={e => handleChange(e)}></input>
+                                </label>
+                            </div>
+                        </div> */}
+                        <button type="submit" onClick={e => handleSubmit(e)} className="submit_new_button form-button">Submit</button>
+                    </form>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div id="Forbidden">
+                    <h1>Error 403 - Forbidden</h1>
+                    <h2>You do not have access to this page</h2>
+                </div>
+            )
+        }
+    }
+    else {
+        return (<h1>Loading...</h1>)
+    }
+
+}
+
+export default New;
+
