@@ -15,10 +15,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
 import { getRoleFromToken } from '../utils/tokenUtils';
+import { getWorkerIdFromToken } from '../utils/tokenUtils';
 import Nav from 'react-bootstrap/Nav';
 // import './PageLayout.css';
 import './components.scss';
 import logo from "./Logo.png";
+import { searchCustomers } from '../actions/customer.js';
+
+
 /**
  * Renders the header with a sign in/out button as well as all of the page links
  */
@@ -28,6 +32,11 @@ export const PageLayout = (props) => {
     const workers = useSelector((state) => state.workers);
 
     const error = useSelector((state) => state.errors.error); //This is our errors. We have this so that in the case of a 500 or 404 error, we can render a new page, and in the case of a 406, we just show the message
+    const workerId = useSelector(state => state.workers.current_worker.id);
+    
+
+    
+    //const [workerId, setWorkerId] = useState(null);
 
     const isAuthenticated = useIsAuthenticated();
     //The eslint thing is here since we don't need instance and I don't want the whole warning thing
@@ -40,6 +49,10 @@ export const PageLayout = (props) => {
         //This is getting the userRole from the given token
         const role = getRoleFromToken(instance, accounts);
         setUserRole(role);
+
+        // New line to alsoo get the workerId when instance or accounts changes -DD 11/1/23 changes to use role based access
+        const workerId = getWorkerIdFromToken(instance, accounts);  // Implementing this function similar to getRoleFromToken -DD 11/1/23
+       //  setWorkerId(workerId);  // Did we set up a state variable setWorkerId to store this value? -DD 11/1/23
     }, [instance, accounts]);
 
 
@@ -94,6 +107,14 @@ export const PageLayout = (props) => {
         dispatch(revertSearchedCustomers());
     }
 
+    const handleViewAllContactsClick = (e) => {
+        // If there's a resetSearch function, keep it
+        resetSearch(e);
+        
+        // Dispatch the search action with the worker's ID
+        dispatch(searchCustomers({ worker_id: workerId }));
+    };
+    
     if (Object.keys(error).length === 0 || error.err_code === 406) {
         return (
             <>
@@ -106,7 +127,9 @@ export const PageLayout = (props) => {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">
-                                    <Nav.Link as={Link} to="contacts" onClick={e => resetSearch(e)}>View All Contacts</Nav.Link>
+                                    {/* <Nav.Link as={Link} to="contacts" onClick={e => resetSearch(e)}>View All Contacts</Nav.Link> DD 11/3/3 role based access changes*/}
+                                    <Nav.Link as={Link} to="contacts" onClick={handleViewAllContactsClick}>View All Contacts</Nav.Link>
+
                                     {userRole === 'CRM.Manage' && <Nav.Link as={Link} to="new_contact" onClick={e => resetSearch(e)}>Create a New Contact</Nav.Link>}
                                     <Nav.Link as={Link} to="search" onClick={e => resetSearch(e)}>Search Contacts</Nav.Link>
                                 </Nav>

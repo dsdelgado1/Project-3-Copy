@@ -37,7 +37,16 @@ const Index = () => {
           {
             Header: 'WB Wood Owner(s)',
             accessor: 'workers',
+          },          
+          {
+            Header: 'Contact Email Address',
+            accessor: 'contact_email',
           },
+          {
+            Header: 'Contact Phone Number',
+            accessor: 'contact_phone_number',
+          },
+          
           /*               {
                           Header: "See Contact",
                           accessor: "customer_button"
@@ -117,6 +126,8 @@ const dataMaker = () => {
         company: individual_customer.company,
         customer_name: individual_customer.contact_name,
         category: individual_customer.category,
+        contact_email: individual_customer.contact_email, 
+        contact_phone_number: individual_customer.contact_phone_number,
         workers: workers_array,
         customer_button: <button className='see_contact_button' onClick={e => handleClick(e, individual_customer)}>See Contact</button>
       };

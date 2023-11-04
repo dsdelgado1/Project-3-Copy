@@ -19,7 +19,8 @@ const AddWorkerToCustomer = () => {
     
     const [selected, setSelected] = useState({}); //This determines what has and hasn't been selected yet with workers
     const [workersAvailable, setWorkersAvailable] = useState([]); //This will be the filtered list of select_tag_workers that doesn't include the workers already on the project
-    
+    const [userRole, setUserRole] = useState("");//DD 11/2/23 Role Based Access Changes
+
     const hasBeenRenderedRef = useRef(false); //Used to determine if we've rendered it yet or not so that we don't have to run second useEffect at first render
     const hasBeenFilteredRef = useRef(false); //Used to determine if we've already done the filtering or not 
 
@@ -40,7 +41,11 @@ const AddWorkerToCustomer = () => {
             navigate("/contacts");
         };
     }, [workerCustomers, errors, navigate])
-
+    useEffect(() => {
+        // Fetch user role using mSAL or Graph API
+        // This is a placeholder. Actual implementation depends on your backend and authentication setup.
+        // setUserRole(fetchedRole);
+    }, []);
     const handleSubmit = (e) => {
         //Handles submitting the form
         e.preventDefault();

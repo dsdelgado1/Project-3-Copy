@@ -1,9 +1,34 @@
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
-export const getCustomers = () => dispatch => {
+/* 
+*************DD 11/2/23***************export const getCustomers = () => dispatch => {
   //Does exactly what it says it does
-  axios.get("https://crmpilot0.azurewebsites.net/customers")
-    .then(response => dispatch({ type: 'GET_ALL_CUSTOMERS', payload: response.data }))
+   // Fetch workerId and role from Redux state -DD 11/2/23 Role Based Access Changes
+   const workerId = useSelector(state => state.yourUserReducer.workerId);
+    const role = useSelector(state => state.yourUserReducer.role);
+    
+    see below for temporary replacement (getCustomers)
+    *************DD 11/2/23***************
+*/
+
+export const getCustomers = () => (dispatch, getState) => {
+  // Accessing the Redux state to get the worker's ID and role
+  // const workerId = getState().workers.current_worker.id;
+  const workerId = getState().workers;
+  const workerRole = getState().workers.current_worker.role;
+
+
+  // Making the API call with the worker's ID and role in the headers
+  // axios.get(`https://crmpilot0.azurewebsites.net/${role === 'CRM.Manage' ? 'customers' : 'workercustomers'}`, {
+  axios.get(`https://crmpilot0.azurewebsites.net/customers`, {
+    headers: {
+      'worker-id': workerId,
+      'worker-role': workerRole
+    }
+
+  })
+    .then(response => { console.log('Response ==> ', response); dispatch({ type: 'GET_ALL_CUSTOMERS', payload: response.data }) })
     .catch(err => dispatch({ type: 'ERROR_CAUGHT', payload: { err_message: err.response.data.message, err_code: err.response.request.status, err_value: err.response.request.statusText } }))
 }
 

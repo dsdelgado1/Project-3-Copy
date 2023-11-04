@@ -2,12 +2,13 @@ import { getCustomers } from './actions/customer.js';
 import { getWorkers } from './actions/worker';
 import { Routes, Route } from 'react-router-dom';
 import { getWorkerCustomers } from './actions/workercustomer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { PageLayout } from "./components/PageLayout";
-import {lazy, Suspense} from 'react';
-import './App.css';  
-import { useIsAuthenticated } from "@azure/msal-react";
+import { lazy, Suspense } from 'react';
+import './App.css';
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { getRoleFromToken, getWorkerIdFromToken } from './utils/tokenUtils.js';
 
 
 const Index = lazy(() => import('./components/customer/customer_index.js'));
@@ -21,36 +22,50 @@ const Search = lazy(() => import('./components/customer/search.js'));
 const Home = lazy(() => import('./components/home.js'));
 
 const App = () => {
-    
-    const dispatch = useDispatch();
-    const isAuthenticated = useIsAuthenticated();
+  const { instance, accounts } = useMsal();
+  const workerId = useSelector(state => state.workers.current_worker.id);
 
-      useEffect(() => {
-        dispatch(getCustomers());
-        dispatch(getWorkers());
-        dispatch(getWorkerCustomers());
-      }, [dispatch]);
+  const dispatch = useDispatch();
+  const isAuthenticated = useIsAuthenticated();
+  const role = getRoleFromToken(instance, accounts);
+  console.log('WorkerId in App.js ==> ', workerId, role);
 
-    return(
-      <div>
-        <PageLayout /> 
-        <Suspense fallback={<h1>Loading...</h1>}>
-          {isAuthenticated ? <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="contacts" element={<Index />} />
-            <Route path="new_contact" element={<NewCustomer />} />
-            <Route path="contact" element={<Show />} />
-            <Route path="search" element={<Search />} />
-            {/* <Route path="new_worker" element={<NewWorker />} /> */}
-            {/* <Route path="add_worker" element={<AddWorkerToCustomer />} /> */}
-            {/* <Route path="calendar" element={<OutlookCalendarDisplay />} /> */}
-            {/* <Route path="event_create" element={<OutlookCalendarEventCreate />} /> */}
-          </Routes>
+  // const workerId = useSelector(state => state.workers.current_worker.id);
+
+
+
+  useEffect(() => {
+    if (role === 'CRM.Manage') {
+      console.log('ROlesddsa');
+      dispatch(getCustomers());
+      // dispatch(getWorkerCustomers(workerId));
+    } else {
+      console.log('workeer thinggg', typeof workerId);
+      dispatch(getWorkerCustomers(workerId));
+    }
+    dispatch(getWorkers());
+  }, [dispatch, role, workerId]);
+
+  return (
+    <div>
+      <PageLayout />
+      <Suspense fallback={<h1>Loading...</h1>}>
+        {isAuthenticated ? <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="contacts" element={<Index />} />
+          <Route path="new_contact" element={<NewCustomer />} />
+          <Route path="contact" element={<Show />} />
+          <Route path="search" element={<Search />} />
+          {/* <Route path="new_worker" element={<NewWorker />} /> */}
+          {/* <Route path="add_worker" element={<AddWorkerToCustomer />} /> */}
+          {/* <Route path="calendar" element={<OutlookCalendarDisplay />} /> */}
+          {/* <Route path="event_create" element={<OutlookCalendarEventCreate />} /> */}
+        </Routes>
           :
           null}
-        </Suspense>
-      </div>
-      
-    )
+      </Suspense>
+    </div>
+
+  )
 }
 export default App;
