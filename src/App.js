@@ -36,10 +36,10 @@ const App = () => {
 
   useEffect(() => {
     if (role === 'CRM.Manage') {
-      console.log('ROlesdddsa');
+      console.log('ROlesdddsaaa');
       dispatch(getCustomers());
     }
-      // dispatch(getWorkerCustomers(workerId));
+      // dispatch  (getWorkerCustomers(workerId));
     // } else {
     //   console.log('workeer thinggg', typeof workerId);
     //   dispatch(getAllWorkerCustomers(workerId));
