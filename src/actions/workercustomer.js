@@ -1,10 +1,16 @@
 import axios from 'axios';
 
 
-export const getWorkerCustomers = (workerId) => dispatch => {
+export const getWorkerCustomers = () => dispatch => {
+  console.log('Actions ', `https://crmpilot0.azurewebsites.net/workercustomers`);
+  axios.get(`https://crmpilot0.azurewebsites.net/workercustomers`)
+  .then(response => dispatch({ type: 'GET_ALL_WORKER_CUSTOMERS', payload: response.data}))
+}
+
+export const getAllWorkerCustomers = (workerId) => dispatch => {
   console.log('Actions ', `https://crmpilot0.azurewebsites.net/workercustomers/${workerId}`);
   axios.get(`https://crmpilot0.azurewebsites.net/workercustomers/${workerId}`)
-  .then(response => dispatch({ type: 'GET_ALL_WORKER_CUSTOMERS', payload: response.data}))
+  .then(response => dispatch({ type: 'GET_ALL_RESTRICTED_WORKER_CUSTOMERS', payload: response.data}))
 }
 
 export const addWorkerToCustomer = (customer_id, worker_id) => dispatch => {

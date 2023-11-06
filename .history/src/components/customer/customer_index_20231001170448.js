@@ -116,6 +116,7 @@ const dataMaker = () => {
       return {
         company: individual_customer.company,
         customer_name: individual_customer.contact_name,
+        
         category: individual_customer.category,
         workers: workers_array,
         customer_button: <button className='see_contact_button' onClick={e => handleClick(e, individual_customer)}>See Contact</button>

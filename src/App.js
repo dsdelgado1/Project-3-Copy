@@ -1,7 +1,7 @@
 import { getCustomers } from './actions/customer.js';
 import { getWorkers } from './actions/worker';
 import { Routes, Route } from 'react-router-dom';
-import { getWorkerCustomers } from './actions/workercustomer';
+import { getAllWorkerCustomers, getWorkerCustomers } from './actions/workercustomer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { PageLayout } from "./components/PageLayout";
@@ -23,28 +23,35 @@ const Home = lazy(() => import('./components/home.js'));
 
 const App = () => {
   const { instance, accounts } = useMsal();
-  const workerId = useSelector(state => state.workers.current_worker.id);
+ const workerId = useSelector(state => state.workers.current_worker.id);
 
   const dispatch = useDispatch();
   const isAuthenticated = useIsAuthenticated();
   const role = getRoleFromToken(instance, accounts);
   console.log('WorkerId in App.js ==> ', workerId, role);
 
-  // const workerId = useSelector(state => state.workers.current_worker.id);
+  const workerId2 = useSelector(state => state.workers.current_worker.id);
 
-
+  console.log('WorkerId 2 in App.js ==> ', workerId2, role)
 
   useEffect(() => {
     if (role === 'CRM.Manage') {
       console.log('ROlesddsa');
       dispatch(getCustomers());
-      // dispatch(getWorkerCustomers(workerId));
-    } else {
-      console.log('workeer thinggg', typeof workerId);
-      dispatch(getWorkerCustomers(workerId));
     }
+      // dispatch(getWorkerCustomers(workerId));
+    // } else {
+    //   console.log('workeer thinggg', typeof workerId);
+    //   dispatch(getAllWorkerCustomers(workerId));
+    // }
+
+    if(workerId) {
+      dispatch(getAllWorkerCustomers(workerId));
+    }
+    dispatch(getWorkerCustomers());
     dispatch(getWorkers());
   }, [dispatch, role, workerId]);
+// console.log('WOrkerID' , workerId);
 
   return (
     <div>

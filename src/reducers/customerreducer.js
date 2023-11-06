@@ -13,6 +13,7 @@ const initialState = {
 const customerReducer = createReducer(initialState, (builder) => {
     builder
       .addCase("GET_ALL_CUSTOMERS", (state, action) => {
+        console.log('Customers Reducers ', action.payload);
         state.customers = action.payload;
         state.customers_succeeded = true;
       })

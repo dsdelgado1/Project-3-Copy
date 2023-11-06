@@ -1,6 +1,7 @@
 import { useTable, usePagination } from 'react-table'; //The table library we're using
 
 const Table = ({ columns, data }) => {
+  console.log("data in Customer Tbale ==> ", data, columns);
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,

@@ -28,7 +28,7 @@ export const getCustomers = () => (dispatch, getState) => {
     }
 
   })
-    .then(response => { console.log('Response ==> ', response); dispatch({ type: 'GET_ALL_CUSTOMERS', payload: response.data }) })
+    .then(response => { console.log('Response Actions ==> ', response); dispatch({ type: 'GET_ALL_CUSTOMERS', payload: response.data }) })
     .catch(err => dispatch({ type: 'ERROR_CAUGHT', payload: { err_message: err.response.data.message, err_code: err.response.request.status, err_value: err.response.request.statusText } }))
 }
 
