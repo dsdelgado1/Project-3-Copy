@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getWorkerCustomers = () => dispatch => {
   console.log('Actions ', `https://crmpilotCpy1.azurewebsites.net/workercustomers`);
-  axios.get(`https://crmpilotCpy0.azurewebsites.net/workercustomers`)
+  axios.get(`https://crmpilotCpy1.azurewebsites.net/workercustomers`)
     .then(response => dispatch({ type: 'GET_ALL_WORKER_CUSTOMERS', payload: response.data }))
 }
 
