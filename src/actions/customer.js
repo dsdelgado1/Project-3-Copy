@@ -21,7 +21,7 @@ export const getCustomers = () => (dispatch, getState) => {
 
   // Making the API call with the worker's ID and role in the headers
   // axios.get(`https://crmpilot0.azurewebsites.net/${role === 'CRM.Manage' ? 'customers' : 'workercustomers'}`, {
-  axios.get(`https://crmpilot0.azurewebsites.net/customers`, {
+  axios.get(`https://crmpilotCpy1.azurewebsites.net/customers`, {
     headers: {
       'worker-id': workerId,
       'worker-role': workerRole
@@ -34,7 +34,7 @@ export const getCustomers = () => (dispatch, getState) => {
 
 export const createCustomer = (customer_information, selected_workers) => dispatch => {
   return new Promise((resolve, reject) => {  // <-- Return a new Promise
-    axios.post("https://crmpilot0.azurewebsites.net/customers", { customer: customer_information, workers: selected_workers })
+    axios.post("https://crmpilotCpy1.azurewebsites.net/customers", { customer: customer_information, workers: selected_workers })
       .then(response => {
         dispatch({ type: 'CREATE_NEW_CUSTOMER', payload: { customer: response.data.customer[0], workers: selected_workers } });
         dispatch({ type: 'CREATE_NEW_WORKER_CUSTOMERS', payload: response.data.new_worker_customers });
@@ -67,13 +67,13 @@ export const lookAtSpecificCustomer = (customer_information, workers) => dispatc
 export const updateNotes = (note_data) => dispatch => {
   //Since we will be defaulting with the notes already blank, we only need patch This both sends the data to the back end as well as updates the current notes on the front end
   dispatch({ type: 'NOTE_UPDATED', payload: note_data })
-  axios.post(`https://crmpilot0.azurewebsites.net/customers/update`, { value: note_data.value, id: note_data.id })
+  axios.post(`https://crmpilotCpy1.azurewebsites.net/customers/update`, { value: note_data.value, id: note_data.id })
 }
 
 export const destroyCustomer = (customer_id) => dispatch => {
   //This deletes the customer as well as the worker_customers associated with it
 
-  axios.post(`https://crmpilot0.azurewebsites.net/customers/destroy`, { id: customer_id })
+  axios.post(`https://crmpilotCpy1.azurewebsites.net/customers/destroy`, { id: customer_id })
     .then(() => {
       dispatch({ type: 'CUSTOMER_DESTROYED', payload: customer_id });
       dispatch({ type: 'WORKER_CUSTOMER_ROWS_DESTROYED', payload: customer_id });
